@@ -1,35 +1,32 @@
 pipeline {
     agent any
     parameters {
-        string(name: 'DOCKERFILE', defaultValue: 'Dockerfiletemp', description: 'choose dockerfile...')
+        string(name: 'environment', defaultValue: 'production', description: 'Environemnt')
     }
+
+    environment {
+        ARM_USE_MSI = 'true'
+        ARM_SUBSCRIPTION_ID = '0df0b217-e303-4931-bcbf-af4fe070d1ac'
+        ARM_TENANT_ID = '812aea3a-56f9-4dcb-81f3-83e61357076e'
+    }
+
     stages {
-        stage('Build') {
+        stage('Init') {
             steps {
-                echo 'Building..'
-                sh """
-                pip3 install .
-                python3 tests.py
-                """
+                sh "terraform init"
             }
         }
-        stage('Test') {
+        stage('Validate') {
             steps {
-                echo 'Testing..'
-                sh """
-                docker build -t alison . -f ${params.DOCKERFILE}
-                """
+                sh "terraform validate"
             }
         }
-        stage('Deploy') {
+        stage('Plan') {
             steps {
-                echo 'Deploying.... dude man 5'
+                sh """ terraform plan --var-file ${params.environment}.tfvars """
             }
         }
     }
 }
 
-#init
-#validate
-#plan +varfile
-#
+

@@ -145,7 +145,10 @@ variable "sub" {
    os_profile_linux_config {
      disable_password_authentication = true
      ssh_keys {
-       key_data = file("~/.ssh/id_rsa.pub")
+       key_data = data.azurerm_key_vault_secret.main.value
+
+
+     #  key_data = file("~/.ssh/id_rsa.pub")
        path     = "/home/testadmin/.ssh/authorized_keys"
      }
      
@@ -303,3 +306,11 @@ variable "sub" {
 
 
 
+data "azurerm_key_vault" "kv" {
+  name                = "jonathanfekeyvault"
+  resource_group_name = "jonathanfe-azuretask-rg"
+}
+data "azurerm_key_vault_secret" "main" {
+  name         = "jonathanfe-public-key"
+  key_vault_id = data.azurerm_key_vault.kv.id
+}

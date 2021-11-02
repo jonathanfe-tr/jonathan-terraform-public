@@ -1,7 +1,7 @@
 pipeline {
     agent any
     parameters {
-        string(name: 'ENVIRONMENT', defaultValue: 'production', description: 'Please choose environment dude2')
+        string(name: 'ENVIRONMENT', defaultValue: 'staging', description: 'Please choose environment dude3')
     }
 
     environment {
@@ -41,7 +41,7 @@ pipeline {
             steps {
                googlechatnotification (
                    url: "https://chat.googleapis.com/v1/spaces/AAAA2NbUb4k/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=tYGq6_ogK2LZiMq2s2oGIG4_2yB9STC_lxrG7eSSc68%3D",
-                   message: 'Shoshana Rules!',
+                   message: 'Asafius',
                    sameThreadNotification: true,
                    suppressInfoLoggers: true
                )

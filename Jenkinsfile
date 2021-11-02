@@ -4,8 +4,6 @@ pipeline {
         string(name: 'environment', defaultValue: 'production', description: 'Environemnt')
     }
 
-# bla
-
     environment {
         ARM_USE_MSI = 'true'
         ARM_SUBSCRIPTION_ID = '0df0b217-e303-4931-bcbf-af4fe070d1ac'

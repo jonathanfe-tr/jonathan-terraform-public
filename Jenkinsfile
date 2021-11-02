@@ -32,9 +32,9 @@ pipeline {
                     if (params.ENVIRONMENT == "production") {
                        input "Deploy to prod?"
                     }
-                    else if (${GIT_BRANCH} == "master") { 
-                       input "Deploy to prod (branch is master)?" 
-                    } 
+                    // else if (${GIT_BRANCH} == "master") { 
+                    //    input "Deploy to prod (branch is master)?" 
+                    // } 
                     else {
                         echo 'Deploying to staging'
                     }

@@ -185,6 +185,34 @@ variable "sub" {
   #    resource_group_name = "bastion1"
   #  }
 
+   data "azurerm_virtual_network" "jonathanfe-bastionTF" {
+     name                = "bastion1"
+     resource_group_name = "bastion1"
+   }
+
+   data "azurerm_resource_group" "bastion-rg" {
+     name = "bastion1"
+   }
+
+   resource "azurerm_virtual_network_peering" "jonathanfe-bastionTF" {
+     name                         = "${var.resource_group_name}"
+     resource_group_name          = azurerm_resource_group.jonathanfeTF.name
+     virtual_network_name         = azurerm_virtual_network.jonathanfeTF.name
+     remote_virtual_network_id    = data.azurerm_virtual_network.jonathanfe-bastionTF.id
+    allow_virtual_network_access = true
+     allow_forwarded_traffic      = true
+     allow_gateway_transit        = false
+   }
+   resource "azurerm_virtual_network_peering" "jonathanfe-peering" {
+     name                         = "peering-${terraform.workspace}"
+     resource_group_name          = data.azurerm_resource_group.bastion-rg.name
+     virtual_network_name         = data.azurerm_virtual_network.jonathanfe-bastionTF.name
+     remote_virtual_network_id    = azurerm_virtual_network.jonathanfeTF.id
+     allow_virtual_network_access = true
+     allow_forwarded_traffic      = true
+     allow_gateway_transit        = false
+   }
+
   #  data "azurerm_resource_group" "bastion-rg" {
   #    name = "bastion1"
   #  }

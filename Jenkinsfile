@@ -23,7 +23,7 @@ pipeline {
         }
         stage('Plan') {
             steps {
-                sh """ terraform plan --var-file ${params.environment}.tfvars """
+                sh """ terraform plan --var-file ${params.environment}.tfvars 2>&1 | tee outfile """
             }
         }
     }

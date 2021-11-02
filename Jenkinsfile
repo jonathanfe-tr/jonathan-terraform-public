@@ -1,7 +1,7 @@
 pipeline {
     agent any
     parameters {
-        string(name: 'environment', defaultValue: 'production', description: 'Please choose environment')
+        string(name: 'environment', defaultValue: 'staging', description: 'Please choose environment')
     }
 
     environment {
@@ -21,9 +21,15 @@ pipeline {
                 sh "terraform validate"
             }
         }
-        stage('Plan') {
+        stage('Plan ') {
             steps {
                 sh """ terraform plan --var-file ${params.environment}.tfvars -out=plan.log """
+            }
+        }
+        stage('Plan Approval ') {
+            steps {
+                /* groovylint-disable-next-line LineLength */
+                sh """ if ${params.environment} == "staging" ; then ; terraform -auto-approve ${params.environment}.tfvars"""
             }
         }
     }

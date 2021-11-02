@@ -83,7 +83,8 @@ variable "sub" {
 
 
  resource "azurerm_resource_group" "jonathanfeTF" {
-   name     = "${var.resource_group_name}-${terraform.workspace}"
+#   name     = "${var.resource_group_name}-${terraform.workspace}"
+   name     = "${var.resource_group_name}"
    location = var.location
 
  }

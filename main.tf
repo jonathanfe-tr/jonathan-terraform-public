@@ -295,15 +295,6 @@ variable "sub" {
 
 
 
-# resource "azurerm_role_assignment" "role_assignment" {
-#   name               = azurerm_virtual_machine.jonathanfeTF.name
-#   scope              = data.azurerm_subscription.primary.id
-#   role_definition_id = "${data.azurerm_subscription.subscription.id}${data.azurerm_role_definition.contributor.id}"
-#   principal_id       = azurerm_virtual_machine.jonathanfeTF.identity[count.index]["principal_id"]
-# }
-
-
-
 
 data "azurerm_key_vault" "kv" {
   name                = "jonathanfekeyvault"

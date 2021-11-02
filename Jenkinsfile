@@ -33,7 +33,7 @@ pipeline {
                        input "Deploy to prod?"
                     }
                     else {
-                        echo 'Deploying to staging'
+                     sh """ terraform apply -auto-approve --var-file ${params.ENVIRONMENT}.tfvars """
                     }
                 }
             }

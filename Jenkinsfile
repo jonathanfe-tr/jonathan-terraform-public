@@ -37,5 +37,15 @@ pipeline {
                 }
             }
         }
+        stage('Notification') {
+            steps {
+               googlechatnotification (
+                   url: "https://chat.googleapis.com/v1/spaces/AAAA2NbUb4k/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=tYGq6_ogK2LZiMq2s2oGIG4_2yB9STC_lxrG7eSSc68%3D",
+                   message: 'Shoshana Rules!',
+                   sameThreadNotification: true,
+                   suppressInfoLoggers: true
+               )
+            }
+        }
     }
 }

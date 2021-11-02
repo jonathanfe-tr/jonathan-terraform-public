@@ -1,7 +1,7 @@
 pipeline {
     agent any
     parameters {
-        string(name: 'ENVIRONMENT', defaultValue: 'staging', description: 'Please choose environment dude5')
+        string(name: 'ENVIRONMENT', defaultValue: 'staging', description: 'Please choose environment dude6')
     }
 
     environment {
@@ -32,7 +32,7 @@ pipeline {
                     if (params.ENVIRONMENT == "production") {
                        input "Deploy to prod?"
                     }
-                    else if (${GIT_BRANCH} == "master") { echo 'branch is ${GIT_BRANCH}' 
+                    else if (${GIT_BRANCH} == "master") { 
                        input "Deploy to prod (branch is master)?" 
                     } 
                     else {

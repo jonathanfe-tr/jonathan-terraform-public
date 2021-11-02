@@ -29,7 +29,7 @@ pipeline {
         stage('Plan Approval ') {
             steps {
                 /* groovylint-disable-next-line LineLength */
-                sh """ if ${params.ENVIRONMENT} == "staging"; then; terraform -auto-approve ${params.ENVIRONMENT}.tfvars"""
+                sh """ if ${params.ENVIRONMENT} == "staging"; then; terraform -auto-approve ${params.ENVIRONMENT}.tfvars; fi"""
             }
         }
     }

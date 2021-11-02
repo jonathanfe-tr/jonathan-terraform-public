@@ -13,12 +13,12 @@ pipeline {
     stages {
         stage('Init') {
             steps {
-                sh "terraform init"
+                sh """ terraform init """
             }
         }
         stage('Validate') {
             steps {
-                sh "terraform validate"
+                sh """ terraform validate """
             }
         }
         stage('Plan ') {
@@ -33,9 +33,9 @@ pipeline {
                        input "Deploy to prod?"
                     } else {
                         echo 'Deploying to staging'
+                    }
+                }
             }
         }
     }
 }
-    
-

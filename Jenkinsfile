@@ -14,6 +14,7 @@ pipeline {
         stage('Init') {
             steps {
                 sh """ terraform init """
+                sh """ terraform workspace select ${params.ENVIRONMENT} """
             }
         }
         stage('Validate') {

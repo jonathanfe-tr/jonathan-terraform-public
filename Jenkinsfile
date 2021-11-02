@@ -28,8 +28,11 @@ pipeline {
         }
         stage('Plan Approval ') {
             steps {
-                /* groovylint-disable-next-line LineLength */
-                sh """ if ${params.ENVIRONMENT} == "staging"; then; terraform -auto-approve ${params.ENVIRONMENT}.tfvars; fi"""
+                script {
+                    if (params.ENVIRONMENT == "prod") {
+                       input "Deploy to prod?"
+                    } else {
+                        echo 'Deploying to staging'
             }
         }
     }

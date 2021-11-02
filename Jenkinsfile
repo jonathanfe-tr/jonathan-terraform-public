@@ -29,7 +29,7 @@ pipeline {
         stage('Plan Approval ') {
             steps {
                 script {
-                    if (params.ENVIRONMENT == "prod") {
+                    if (params.ENVIRONMENT == "production") {
                        input "Deploy to prod?"
                     } else {
                         echo 'Deploying to staging'

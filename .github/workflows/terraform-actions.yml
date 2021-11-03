@@ -47,7 +47,7 @@ name: 'Test1'
 on:
   push:
     branches:
-    - main
+    - master
   pull_request:
 
 jobs:
